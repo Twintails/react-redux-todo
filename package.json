@@ -10,12 +10,11 @@
     "test": "karma start"
   },
   "author": {
-    "name": "Lawrence Francell",
-    "email": "no1special@mac.com"
+    "name": "Lawrence Francell"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Twintails/react-timer-app.git"
+    "url": "git+https://github.com/Twintails/react-boilerplate.git"
   },
   "license": "MIT",
   "dependencies": {
