@@ -1,33 +1,25 @@
 import React, { Component } from 'react'
-import { IndexLink } from 'react-router'
+import { Link, IndexLink } from 'react-router'
 import NavLink from 'NavLinks'
 
-const Nav = React.createClass({
-  onSearch: function(e) {
-    e.preventDefault()
-    var location = this.refs.search.value
-    var encodedLocation = encodeURIComponent(location)
-
-    if ( location.length > 0) {
-      this.refs.search.value = ''
-      // window.location.hash = '/?location=' + encodedLocation
-      window.location.href = window.location.origin + '/?location=' + encodedLocation
-    }
-  },
-  render: function (props) {
+class Nav extends React.Component {
+  render() {
     return (
       <div className="top-bar">
         <div className="top-bar-left">
           <ul className="menu">
-            <li><span className="menu-text">App BP</span></li>
-            <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+            <li className="menu-text"><span>Timer App</span></li>
+            <li><IndexLink to="/" >Timer</IndexLink></li>
+            <li><NavLink to="/countdown" >Countdown</NavLink></li>
           </ul>
         </div>
         <div className="top-bar-right">
+          <ul className="menu">
+            <li className="menu-text"><span>Created By <a href="//twintails.com" target="_blank">Twintails</a></span></li>
+          </ul>
         </div>
       </div>
     )
   }
-})
-
-export default Nav;
+}
+export default Nav

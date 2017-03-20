@@ -4,7 +4,7 @@
 
 * An app for Boilerplate
 * Version 0.5.0
-* Starting a project with React 15.4.2, Webpack 2, and subsequent relational dependencies 
+* Starting a project with React 15.4.2, Webpack 1, and subsequent relational dependencies 
 
 
 ### How do I get set up? ###

@@ -1,7 +1,7 @@
 {
   "name": "react-boilerplate",
   "version": "0.4.0",
-  "description": "Webpack 2 + React 15.4 Boilerplate app; Now with testing!",
+  "description": "Webpack 1 + React 15.4 Boilerplate app; Now with testing!",
   "main": "server.js",
   "scripts": {
     "heroku-postbuild": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
