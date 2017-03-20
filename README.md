@@ -4,46 +4,40 @@
 
 * An app for Boilerplate
 * Version 0.5.0
-* Starting a project with React 15.4.2, Webpack 1, and subsequent relational dependencies 
+* Starting a project with React 15.4.2, Webpack 1, and subsequent relational dependencies
 
 
 ### How do I get set up? ###
 
-```
-#!bash
+```bash
 
 npm install
 
 ```
 To Run the app with a single word command you should install a couple np's globally
-```
-#!bash
+```bash
 
 npm install -g webpack nodemon
 ```
 Then issue the command to webpack and monitor app directory for changes.
-```
-#!bash
+```bash
 
 nodemon
 ```
 Or, run a Dev environment with webpack-dev-server instead of nodemon
-```
-#!bash
+```bash
 
 npm run-script development
 ```
 
 for compiling a distribution folder which you can run from any web server.
 
-```
-#!bash
+```bash
 
 webpack
 ```
 upload the public folder to your Node server, wherever that may be, and have your server run server.js
-```
-#!bash
+```bash
 
 node server.js
 ```
