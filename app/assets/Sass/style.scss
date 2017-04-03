@@ -1,0 +1,9 @@
+@import "normalize";
+@import "foundation";
+
+@include normalize();
+@include foundation-everything();
+
+body {
+  background-color: #f6fff6;
+}

@@ -29,12 +29,17 @@ module.exports = {
     filename: 'js/bundle.js'
   },
   resolve: {
+    modules: [
+      __dirname,
+      "node_modules",
+      './app/components'
+    ],
+    modulesDirectories: [
+      "node_modules",
+      './app/components'
+    ],
     root: __dirname,
-    alias: {
-      Nav:            'app/components/Nav.jsx',
-      NavLinks:       'app/components/NavLinks.jsx',
-      Main:           'app/components/Main.jsx'
-    },
+    alias: {},
     extensions: ['','.js','.jsx']
   },
   devtool: "source-map",
@@ -50,6 +55,12 @@ module.exports = {
     ]
   },
   postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+  sassLoader: {
+    includePaths: [
+      path.resolve(__dirname, './node_modules/normalize-scss/sass'),
+      path.resolve(__dirname, './node_modules/foundation-sites/scss')
+    ]
+  },
   externals: {
     jquery: 'jQuery'
   },

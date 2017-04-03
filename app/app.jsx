@@ -2,12 +2,7 @@ import React from 'react'
 import ReactDOM, { render } from 'react-dom';
 import {Route, Router, IndexRoute, hashHistory, browserHistory} from 'react-router'
 
-import Main from 'Main'
-
-
-
-// Load Foundation-sites
-import 'style!css!foundation-sites/dist/css/foundation.min.css'
+import ToDoApp from 'ToDoApp'
 
 //scss
 import './assets/images/favicon.ico'
@@ -15,9 +10,9 @@ import './assets/Sass/style.scss'
 
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path="/" component={Main}>
-      <IndexRoute component={Timer}/>
-      <Route path="countdown" component={Countdown}/>
+    <Route path="/" component={ToDoApp}>
+      {/* <IndexRoute component={Timer}/> */}
+      {/* <Route path="countdown" component={Countdown}/> */}
     </Route>
   </Router>,
   document.getElementById('app')
