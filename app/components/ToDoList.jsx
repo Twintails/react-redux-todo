@@ -20,11 +20,9 @@ class ToDoList extends React.Component {
 
     return (
       <div className="row">
-        <div className="small-3 columns">&nbsp;</div>
-        <div className="small-6 columns">
+        <div className="small-10 small-offset-1 columns">
           {renderToDos()}
         </div>
-        <div className="small-3 columns">&nbsp;</div>
       </div>
     )
   }

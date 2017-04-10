@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import Nav from 'Nav'
 
+import SearchForm from 'SearchForm'
 import ToDoList from 'ToDoList'
+import ToDoInputForm from 'ToDoInputForm'
 
 
 class ToDoApp extends React.Component {
@@ -29,12 +31,20 @@ class ToDoApp extends React.Component {
     }
   }
 
+  handleAddToDo(text) {
+    console.log("New ToDo: " + text);
+  }
+
   render() {
     let {todos} = this.state
     return (
       <div className="main-content">
         <Nav/>
-        <ToDoList todos={todos} />
+        <div className="small-12 medium-6 medium-offset-3">
+          <SearchForm/>
+          <ToDoList todos={todos} />
+          <ToDoInputForm onSetNewToDo={this.handleAddToDo}/>
+        </div>
       </div>
     )
   }

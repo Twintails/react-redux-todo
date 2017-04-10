@@ -2,8 +2,39 @@
 @import "foundation";
 
 @include normalize();
-@include foundation-everything();
+@include foundation-everything(true);
 
 body {
   background-color: #f6fff6;
+}
+
+.switch label[for='show-completed'].switch-paddle {
+  width: 100%;
+  background-color: #1779ba;
+  .switch-active {
+    right: 6px;
+    left: auto;
+  }
+  .switch-inactive {
+     right: 25px;
+     left: auto;
+  }
+}
+.switch label[for='show-completed'].switch-paddle::after {
+  right: 4px;
+  left: auto;
+}
+.switch label[for='show-completed'].switch-paddle::after {
+  right: 4px;
+  left: auto;
+}
+.switch input:checked ~ label[for='show-completed'].switch-paddle::after {
+  right: 1.5rem;
+  left: auto;
+}
+
+.switch-paddle .label {
+  height: inherit;
+  // margin-left: 3.778em;
+  line-height: 1.1;
 }
