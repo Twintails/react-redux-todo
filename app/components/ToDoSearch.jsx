@@ -1,33 +1,32 @@
 import React, { Component }  from 'react'
 
-class SearchForm extends React.Component{
+class ToDoSearch extends React.Component{
   constructor(props) {
     super(props)
-    this.onFormSubmit = this.onFormSubmit.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
-  onFormSubmit(e) {
+  handleSearch(e) {
     e.preventDefault()
     const query = this.refs.search.value
-    if (location.length > 0) {
-      this.refs.search.value = '';
-      this.props.onSearch(query);
-    }
+    const showCompleted = this.refs.showCompleted.checked
+
+    this.props.onSearch(showCompleted, query)
   }
 
   render() {
     return (
       <div >
-        <form onSubmit={this.onFormSubmit}>
+        <form >
           <div className="input-group align-justify">
             <span className="input-group-label show-for-sr">Search ToDos</span>
-            <input type="text" className="input-group-field" ref="search" placeholder="Search ToDos"/>
+            <input type="text" className="input-group-field" ref="search" placeholder="Search ToDos" onChange={this.handleSearch}/>
             <div className="input-group-button">
               <input type="submit" className="button" value="Search ToDos"/>
             </div>
           </div>
           <div className="switch tiny align-justify">
-            <input className="switch-input" id="show-completed" type="checkbox" name="show-completed"/>
+            <input className="switch-input" id="show-completed" type="checkbox" ref="showCompleted" onChange={this.handleSearch} name="show-completed"/>
             <label className="switch-paddle" htmlFor="show-completed">
               <span className="label">Show completed?</span>
               <span className="switch-active" aria-hidden="true">Ya</span>
@@ -40,4 +39,4 @@ class SearchForm extends React.Component{
   }
 }
 
-export default SearchForm
+export default ToDoSearch

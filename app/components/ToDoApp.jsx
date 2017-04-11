@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Nav from 'Nav'
 
-import SearchForm from 'SearchForm'
+import ToDoSearch from 'ToDoSearch'
 import ToDoList from 'ToDoList'
 import ToDoInputForm from 'ToDoInputForm'
 
@@ -10,6 +10,8 @@ class ToDoApp extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      showCompleted: false,
+      query: '',
       todos: [
         {
           id: 1,
@@ -29,10 +31,19 @@ class ToDoApp extends React.Component {
         }
       ]
     }
+    this.handleAddToDo = this.handleAddToDo.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
   handleAddToDo(text) {
     console.log("New ToDo: " + text);
+  }
+
+  handleSearch(showCompleted, query){
+    this.setState({
+      showCompleted: showCompleted,
+      query: query.toLowerCase()
+    })
   }
 
   render() {
@@ -41,7 +52,7 @@ class ToDoApp extends React.Component {
       <div className="main-content">
         <Nav/>
         <div className="small-12 medium-6 medium-offset-3">
-          <SearchForm/>
+          <ToDoSearch onSearch={this.handleSearch}/>
           <ToDoList todos={todos} />
           <ToDoInputForm onSetNewToDo={this.handleAddToDo}/>
         </div>
