@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Nav from 'Nav'
+import uuid from 'node-uuid'
 
 import ToDoSearch from 'ToDoSearch'
 import ToDoList from 'ToDoList'
@@ -14,19 +15,19 @@ class ToDoApp extends React.Component {
       query: '',
       todos: [
         {
-          id: 1,
+          id: uuid(),
           text: 'Walk the dog'
         },{
-          id: 2,
+          id: uuid(),
           text: 'Build a cow house'
         },{
-          id: 3,
+          id: uuid(),
           text: 'Paint the cow house'
         },{
-          id: 4,
+          id: uuid(),
           text: 'Build a cow house fence'
         },{
-          id: 5,
+          id: uuid(),
           text: 'Water a cow'
         }
       ]
@@ -36,7 +37,14 @@ class ToDoApp extends React.Component {
   }
 
   handleAddToDo(text) {
-    console.log("New ToDo: " + text);
+    this.setState({
+      todos: [
+        ...this.state.todos, {
+          id: uuid(),
+          text: text
+        }
+      ]
+    })
   }
 
   handleSearch(showCompleted, query){
