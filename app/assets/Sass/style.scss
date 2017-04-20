@@ -7,7 +7,23 @@
 body {
   background-color: #f6fff6;
 }
-
+.card .switch{
+  margin: .5rem;
+}
+.switch {
+  label:not([for='show-completed']) {
+    .label{
+      margin-left: 3.6em;
+      color: black;
+      font-weight: normal;
+      background-color: transparent;
+      width: 560%;
+    }
+    .switch-active {
+      left: 11%;
+    }
+  }
+}
 .switch label[for='show-completed'].switch-paddle {
   width: 100%;
   background-color: #1779ba;

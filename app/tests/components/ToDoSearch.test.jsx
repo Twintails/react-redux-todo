@@ -23,7 +23,7 @@ describe('ToDoSearch', () => {
     expect(spy).toHaveBeenCalledWith(false, 'Dog')
   })
 
-  it('Should call onSearch with proper checked value', () => {
+  it('Should call onSearch with proper true value', () => {
     let spy = expect.createSpy()
     let todoSearch = ReactTestUtils.renderIntoDocument(<ToDoSearch onSearch={spy}/>)
 
@@ -31,5 +31,15 @@ describe('ToDoSearch', () => {
     ReactTestUtils.Simulate.change(todoSearch.refs.showCompleted)
 
     expect(spy).toHaveBeenCalledWith(true, '')
+  })
+
+  it('Should call onSearch with proper false value', () => {
+    let spy = expect.createSpy()
+    let todoSearch = ReactTestUtils.renderIntoDocument(<ToDoSearch onSearch={spy}/>)
+
+    todoSearch.refs.showCompleted.checked = false
+    ReactTestUtils.Simulate.change(todoSearch.refs.showCompleted)
+
+    expect(spy).toHaveBeenCalledWith(false, '')
   })
 })

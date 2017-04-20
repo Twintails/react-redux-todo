@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link, IndexLink } from 'react-router'
 import NavLink from 'NavLinks'
 
-class Nav extends React.Component {
+class Nav extends Component {
   render() {
     return (
       <div className="top-bar">

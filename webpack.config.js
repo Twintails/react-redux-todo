@@ -32,11 +32,13 @@ module.exports = {
     modules: [
       __dirname,
       "node_modules",
-      './app/components'
+      './app/components',
+      './app/api'
     ],
     modulesDirectories: [
       "node_modules",
-      './app/components'
+      './app/components',
+      './app/api'
     ],
     root: __dirname,
     alias: {},

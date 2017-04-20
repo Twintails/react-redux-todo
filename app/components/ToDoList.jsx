@@ -2,26 +2,28 @@ import React, { Component } from 'react'
 import ToDo from 'ToDo'
 
 
-class ToDoList extends React.Component {
+class ToDoList extends Component {
   constructor(props) {
     super(props)
+    this.renderToDos = this.renderToDos.bind(this)
+  }
+
+  renderToDos(todos) {
+    return todos.map((todo) => {
+      return (
+        <div className="card" key={(todo.id + "-card")} {...todo.completed} >
+          <ToDo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+        </div>
+      )
+    })
   }
 
   render() {
     let {todos} = this.props
-
-    let renderToDos = () => {
-      return todos.map((todo) => {
-        return (
-          <ToDo key={todo.id} {...todo}/>
-        )
-      })
-    }
-
     return (
       <div className="row">
         <div className="small-10 small-offset-1 columns">
-          {renderToDos()}
+          {this.renderToDos(todos)}
         </div>
       </div>
     )

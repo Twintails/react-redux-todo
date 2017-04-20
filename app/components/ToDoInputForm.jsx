@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class ToDoInputForm extends React.Component{
+class ToDoInputForm extends Component{
     constructor(props) {
       super(props)
       this.onSubmit = this.onSubmit.bind(this)
