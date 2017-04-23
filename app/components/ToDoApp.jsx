@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Nav from 'Nav'
 import uuid from 'node-uuid'
+import moment from 'moment'
 
 import ToDoSearch from 'ToDoSearch'
 import ToDoList from 'ToDoList'
@@ -59,7 +60,9 @@ class ToDoApp extends Component {
         ...this.state.todos, {
           id: uuid(),
           text: text,
-          completed: false
+          completed: false,
+          createdAt: moment().unix(),
+          completedAt: undefined
         }
       ]
     })
@@ -69,6 +72,7 @@ class ToDoApp extends Component {
     let updatedTodos = this.state.todos.map((todo) => {
       if (todo.id === id) {
         todo.completed = !todo.completed
+        todo.completedAt = todo.completed ? moment().unix() : undefined
       }
       return todo
     })

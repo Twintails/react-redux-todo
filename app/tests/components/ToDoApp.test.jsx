@@ -25,7 +25,9 @@ describe('ToDoApp', () => {
     const todoData = {
       id: 11,
       text: 'Test features',
-      completed: false
+      completed: false,
+      createdAt: 0,
+      completedAt: undefined
     }
     const todoApp = ReactTestUtils.renderIntoDocument(<ToDoApp/>)
     todoApp.setState({todos: [todoData]})
@@ -33,6 +35,23 @@ describe('ToDoApp', () => {
     expect(todoApp.state.todos[0].completed).toBe(false)
     todoApp.handleToggle(11)
     expect(todoApp.state.todos[0].completed).toBe(true)
+    expect(todoApp.state.todos[0].completedAt).toBeA('number')
+  })
 
+  it('Should toggle to from completed to incomplete', () => {
+    const todoData = {
+      id: 11,
+      text: 'Test features',
+      completed: true,
+      createdAt: 0,
+      completedAt: 123
+    }
+    const todoApp = ReactTestUtils.renderIntoDocument(<ToDoApp/>)
+    todoApp.setState({todos: [todoData]})
+
+    expect(todoApp.state.todos[0].completed).toBe(true)
+    todoApp.handleToggle(11)
+    expect(todoApp.state.todos[0].completed).toBe(false)
+    expect(todoApp.state.todos[0].completedAt).toNotExist()
   })
 })
