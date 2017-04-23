@@ -8,7 +8,7 @@ class ToDoSearch extends Component{
 
   handleSearch(e) {
     e.preventDefault()
-    const query = this.refs.search.value
+    let query = this.refs.search.value
     let showCompleted = this.refs.showCompleted.checked
     this.props.onSearch(showCompleted, query)
   }

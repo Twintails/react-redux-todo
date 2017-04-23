@@ -83,13 +83,14 @@ class ToDoApp extends Component {
   }
 
   render() {
-    let {todos} = this.state
+    let {todos, showCompleted, query} = this.state
+    let filteredToDos = ToDoAPI.filterToDos(todos, showCompleted, query)
     return (
       <div className="main-content">
         <Nav/>
         <div className="small-12 medium-6 medium-offset-3">
           <ToDoSearch onSearch={this.handleSearch}/>
-          <ToDoList todos={todos} onToggle={this.handleToggle}/>
+          <ToDoList todos={filteredToDos} onToggle={this.handleToggle}/>
           <ToDoInputForm onSetNewToDo={this.handleAddToDo}/>
         </div>
       </div>
