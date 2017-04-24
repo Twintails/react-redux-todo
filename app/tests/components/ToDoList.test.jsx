@@ -14,7 +14,7 @@ describe('ToDoList', () => {
   })
 
   it('Should render one ToDo Component for each todo item', () => {
-    let todos = [{
+    const todos = [{
       id: 1,
       text: 'Walk the dog'
     },{
@@ -25,5 +25,11 @@ describe('ToDoList', () => {
     let toDoComponents = ReactTestUtils.scryRenderedComponentsWithType(toDoList, ToDo)
 
     expect(toDoComponents.length).toBe(todos.length)
+  })
+
+  it('Should render Nothing to do message if no todos', () => {
+    const todos = []
+    let toDoList = ReactTestUtils.renderIntoDocument(<ToDoList todos={todos}/>)
+    expect(ReactDOM.findDOMNode(toDoList).children[0].children[0].innerText).toBe('Nothing to do')
   })
 })
