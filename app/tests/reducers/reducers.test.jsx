@@ -29,4 +29,41 @@ describe('Reducers', () => {
       expect(res).toEqual(true)
     })
   })
+
+  describe('toDosReducer', () => {
+    it('Should add a new ToDo', () => {
+      const action = {
+        type: 'ADD_TODO',
+        text: 'Moo the Cows'
+      }
+      const res = reducers.toDosReducer(df([]), df(action))
+
+      expect(res.length).toEqual(1)
+      expect(res[0].text).toEqual(action.text)
+      console.log('TEST Result: ', res);
+    })
+
+    it('Should invert the state of Todo', () => {
+      let todos = [{
+        id: '123',
+        text: 'Moo the Cows',
+        completed: true,
+        createdAt: 123,
+        completedAt: 125
+      }]
+      const action = {
+          type: 'TOGGLE_TODO',
+          id: '123',
+      }
+      let res = reducers.toDosReducer(df(todos), df(action))
+      expect(res[0].completed).toEqual(false)
+      expect(res[0].completedAt).toEqual(undefined)
+      console.log('TOGGLE_TODO Result: ', res);
+      res = reducers.toDosReducer(df(res), df(action))
+      expect(res[0].completed).toEqual(true)
+      expect(typeof(res[0].completedAt)).toBe('number')
+      console.log('TOGGLE_TODO swap it back: ', res);
+
+    })
+  })
 })
