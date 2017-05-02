@@ -33,12 +33,14 @@ module.exports = {
       __dirname,
       "node_modules",
       './app/components',
-      './app/api'
+      './app/api',
+      './app/actions'
     ],
     modulesDirectories: [
       "node_modules",
       './app/components',
-      './app/api'
+      './app/api',
+      './app/actions'
     ],
     root: __dirname,
     alias: {},
