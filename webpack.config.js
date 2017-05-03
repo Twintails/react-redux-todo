@@ -35,17 +35,21 @@ module.exports = {
       './app/components',
       './app/api',
       './app/actions',
-      './app/reducers'
+      './app/reducers',
+      '.app/store'
     ],
     modulesDirectories: [
       "node_modules",
       './app/components',
       './app/api',
       './app/actions',
-      './app/reducers'
+      './app/reducers',
+      '.app/store'
     ],
     root: __dirname,
-    alias: {},
+    alias: {
+      configureStore: 'app/store/configureStore.jsx'
+    },
     extensions: ['','.js','.jsx']
   },
   devtool: "source-map",

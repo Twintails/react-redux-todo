@@ -58,11 +58,11 @@ describe('Reducers', () => {
       let res = reducers.toDosReducer(df(todos), df(action))
       expect(res[0].completed).toEqual(false)
       expect(res[0].completedAt).toEqual(undefined)
-      console.log('TOGGLE_TODO Result: ', res);
+      console.log('\x1b[36mTOGGLE_TODO Result: \x1b[0m', res);
       res = reducers.toDosReducer(df(res), df(action))
       expect(res[0].completed).toEqual(true)
       expect(typeof(res[0].completedAt)).toBe('number')
-      console.log('TOGGLE_TODO swap it back: ', res);
+      console.log('\x1b[36mTOGGLE_TODO swap it back: \x1b[0m',  res);
 
     })
   })
