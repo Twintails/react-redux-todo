@@ -2,7 +2,7 @@ import expect from 'expect'
 import reducers from 'reducers'
 import df from 'deep-freeze-strict'
 
-describe('Reducers', () => {
+describe('Reducers Test', () => {
   it('Should exist', () => {
     expect(reducers).toExist()
   })
@@ -40,7 +40,7 @@ describe('Reducers', () => {
 
       expect(res.length).toEqual(1)
       expect(res[0].text).toEqual(action.text)
-      console.log('TEST Result: ', res);
+      // console.log('\t\t\x1b[36mTEST Result: \x1b[0m', res);
     })
 
     it('Should invert the state of Todo', () => {
@@ -58,11 +58,11 @@ describe('Reducers', () => {
       let res = reducers.toDosReducer(df(todos), df(action))
       expect(res[0].completed).toEqual(false)
       expect(res[0].completedAt).toEqual(undefined)
-      console.log('\x1b[36mTOGGLE_TODO Result: \x1b[0m', res);
+      // console.log('\t\t\x1b[36mTOGGLE_TODO Result: \x1b[0m', res);
       res = reducers.toDosReducer(df(res), df(action))
       expect(res[0].completed).toEqual(true)
       expect(typeof(res[0].completedAt)).toBe('number')
-      console.log('\x1b[36mTOGGLE_TODO swap it back: \x1b[0m',  res);
+      // console.log('\t\t\x1b[36mTOGGLE_TODO swap it back: \x1b[0m',  res);
 
     })
   })

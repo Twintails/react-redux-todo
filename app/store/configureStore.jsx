@@ -6,16 +6,16 @@ import {
 } from 'reducers'
 
 
-const configure = () => {
+const configure = (initialState = {}) => {
   const reducer = combineReducers({
     searchText: searchTextReducer,
     showCompleted: showCompletedReducer,
     todos: toDosReducer
   })
-  const store = createStore(reducer, compose(
+  const store = createStore(reducer, initialState, compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ))
-  return (reducer, store)
+  return (store)
 }
 
 export default configure

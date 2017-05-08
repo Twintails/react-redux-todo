@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM, { render } from 'react-dom';
-import {Route, Router, IndexRoute, hashHistory, browserHistory} from 'react-router'
-import { createStore } from 'redux';
+import { Route, Router, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import { Provider } from 'react-redux'
 
 import ToDoApp from 'ToDoApp'
 
@@ -22,11 +22,13 @@ import './assets/images/favicon.ico'
 import './assets/Sass/style.scss'
 
 ReactDOM.render(
-  <Router history={browserHistory}>
-    <Route path="/" component={ToDoApp}>
-      {/* <IndexRoute component={Timer}/> */}
-      {/* <Route path="countdown" component={Countdown}/> */}
-    </Route>
-  </Router>,
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Route path="/" component={ToDoApp}>
+        {/* <IndexRoute component={Timer}/> */}
+        {/* <Route path="countdown" component={Countdown}/> */}
+      </Route>
+    </Router>
+  </Provider>,
   document.getElementById('app')
 );

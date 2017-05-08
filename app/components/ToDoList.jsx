@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import ToDo from 'ToDo'
 import moment from 'moment'
 
 
-class ToDoList extends Component {
+export class ToDoList extends Component {
   constructor(props) {
     super(props)
     this.renderToDos = this.renderToDos.bind(this)
@@ -23,7 +24,7 @@ class ToDoList extends Component {
     return todos.map((todo) => {
       return (
         <div className="card" key={(todo.id + "-card")} {...todo.completed} >
-          <ToDo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+          <ToDo key={todo.id} {...todo}/>
           <p className="label">{this.renderDate(todo)}</p>
         </div>
       )
@@ -42,4 +43,10 @@ class ToDoList extends Component {
   }
 }
 
-export default ToDoList
+
+const ConnectedToDoList = connect((state)=>{
+  return {
+    todos: state.todos
+  }
+})(ToDoList)
+export default ConnectedToDoList
