@@ -2,10 +2,10 @@ import uuid from 'node-uuid'
 import moment from 'moment'
 
 module.exports = {
-  searchTextReducer: function(state = '', action) {
+  queryReducer: function(state = '', action) {
     switch (action.type) {
-      case 'SET_SEARCH_TEXT':
-        return action.searchText
+      case 'SET_QUERY_TEXT':
+        return action.query
       default:
         return state
     }
@@ -39,6 +39,8 @@ module.exports = {
               completed: nextCompleted,
               completedAt: nextCompleted ? moment().unix() : undefined
             })
+          } else {
+            return todo
           }
         })
         break

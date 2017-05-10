@@ -6,12 +6,12 @@ describe('Actions', () => {
     expect(actions).toExist()
   })
 
-  it('Should generate search text action', () => {
+  it('Should generate query text action', () => {
     const action = {
-      type: 'SET_SEARCH_TEXT',
-      searchText: 'Cow Houses'
+      type: 'SET_QUERY_TEXT',
+      query: 'Cow Houses'
     }
-    const res = actions.setSearchText(action.searchText)
+    const res = actions.setQuery(action.query)
 
     expect(res).toEqual(action)
   })

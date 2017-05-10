@@ -1,8 +1,8 @@
 module.exports = {
-  setSearchText: function (searchText) {
+  setQuery: function (query) {
     return {
-      type: 'SET_SEARCH_TEXT',
-      searchText
+      type: 'SET_QUERY_TEXT',
+      query
     }
   },
   toggleShowCompleted: function () {

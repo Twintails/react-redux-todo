@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ToDo from 'ToDo'
 import moment from 'moment'
+import ToDoAPI from 'ToDoAPI'
 
 
 export class ToDoList extends Component {
@@ -17,11 +18,15 @@ export class ToDoList extends Component {
       'Completed ' + moment.unix(todo.completedAt).format('YYYY.MM.DD @ HH:mm')
   }
 
-  renderToDos(todos) {
-    if (todos.length === 0) {
+  renderToDos() {
+    const {todos, showCompleted, query} = this.props
+    console.log(ToDoAPI.filterToDos(todos, showCompleted, query).length);
+    if (todos.length === 0 && ToDoAPI.filterToDos(todos, showCompleted, query).length === 0) {
       return (<p className="container__message">Nothing to do</p>)
+    } else if (todos.length > 0 && ToDoAPI.filterToDos(todos, showCompleted, query).length === 0) {
+      return (<p className="container__message">Everything is done, show completed Todos or go have a beer!</p>)
     }
-    return todos.map((todo) => {
+    return ToDoAPI.filterToDos(todos, showCompleted, query).map((todo) => {
       return (
         <div className="card" key={(todo.id + "-card")} {...todo.completed} >
           <ToDo key={todo.id} {...todo}/>
@@ -32,11 +37,10 @@ export class ToDoList extends Component {
   }
 
   render() {
-    let {todos} = this.props
     return (
       <div className="row">
         <div className="small-10 small-offset-1 columns">
-          {this.renderToDos(todos)}
+          {this.renderToDos()}
         </div>
       </div>
     )
@@ -44,9 +48,5 @@ export class ToDoList extends Component {
 }
 
 
-const ConnectedToDoList = connect((state)=>{
-  return {
-    todos: state.todos
-  }
-})(ToDoList)
+const ConnectedToDoList = connect(state=>state)(ToDoList)
 export default ConnectedToDoList

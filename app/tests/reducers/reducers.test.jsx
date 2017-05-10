@@ -7,15 +7,15 @@ describe('Reducers Test', () => {
     expect(reducers).toExist()
   })
 
-  describe('searchTextReducer', () => {
-    it('Should set Search text', () => {
+  describe('queryReducer', () => {
+    it('Should set query', () => {
       const action = {
-        type: 'SET_SEARCH_TEXT',
-        searchText: 'cow'
+        type: 'SET_QUERY_TEXT',
+        query: 'cow'
       }
-      const res = reducers.searchTextReducer(df(''), df(action))
+      const res = reducers.queryReducer(df(''), df(action))
 
-      expect(res).toEqual(action.searchText)
+      expect(res).toEqual(action.query)
     })
   })
 

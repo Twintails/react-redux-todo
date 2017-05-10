@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import actions from 'actions'
 
-class ToDoInputForm extends Component{
+export class ToDoInputForm extends Component{
     constructor(props) {
       super(props)
       this.onSubmit = this.onSubmit.bind(this)
@@ -8,11 +10,13 @@ class ToDoInputForm extends Component{
 
     onSubmit(e) {
       e.preventDefault()
+
+      const {dispatch} = this.props
       const strNewToDo = this.refs.newToDo.value
 
       if ( typeof strNewToDo === 'string' && strNewToDo.length > 0 ) {
         this.refs.newToDo.value = ''
-        this.props.onSetNewToDo(strNewToDo)
+        dispatch(actions.addToDo(strNewToDo))
       } else {
         this.refs.newToDo.focus()
       }
@@ -29,4 +33,5 @@ class ToDoInputForm extends Component{
         )
     }
 }
-export default ToDoInputForm
+
+export default connect()(ToDoInputForm)

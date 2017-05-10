@@ -77,7 +77,7 @@ describe('ToDoAPI', () => {
       expect(filteredToDos[2].completed).toBe(true)
     })
 
-    it('Should filter todos by search text query', () => {
+    it('Should filter todos by query text query', () => {
       const filteredToDos = ToDoAPI.filterToDos(todos, true, 'House')
       expect(filteredToDos.length).toBe(2)
     })

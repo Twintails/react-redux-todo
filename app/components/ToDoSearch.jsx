@@ -1,26 +1,27 @@
 import React, { Component }  from 'react'
+import { connect } from 'react-redux'
+import actions from 'actions'
 
-class ToDoSearch extends Component{
+export class ToDoSearch extends Component{
   constructor(props) {
     super(props)
-    this.handleSearch = this.handleSearch.bind(this)
-  }
-
-  handleSearch(e) {
-    let query = this.refs.search.value
-    let showCompleted = this.refs.showCompleted.checked
-    this.props.onSearch(showCompleted, query)
   }
 
   render() {
+    const {dispatch, showCompleted, query} = this.props
     return (
       <div>
         <div className="input-group align-justify">
           <span className="input-group-label show-for-sr">Search ToDos</span>
-          <input type="text" className="input-group-field" ref="search" placeholder="Search ToDos" onChange={this.handleSearch}/>
+          <input type="text" className="input-group-field" ref="query" value={query} placeholder="Search ToDos" onChange={(query) => {
+            query = this.refs.query.value
+            dispatch(actions.setQuery(query))
+          }}/>
         </div>
         <div className="switch tiny align-justify">
-          <input className="switch-input" id="show-completed" type="checkbox" ref="showCompleted" onChange={this.handleSearch} name="show-completed"/>
+          <input className="switch-input" id="show-completed" name="show-completed" type="checkbox" checked={showCompleted} ref="showCompleted" onChange={() => {
+            dispatch(actions.toggleShowCompleted())
+          }} />
           <label className="switch-paddle" htmlFor="show-completed" >
             <span className="label">Show completed?</span>
             <span className="switch-active" aria-hidden="true">Ya</span>
@@ -32,4 +33,9 @@ class ToDoSearch extends Component{
   }
 }
 
-export default ToDoSearch
+export default connect((state) => {
+  return {
+    showCompleted: state.showCompleted,
+    query: state.query
+  }
+})(ToDoSearch)

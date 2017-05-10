@@ -23,7 +23,7 @@ module.exports = {
       return !todo.completed || showCompleted
     })
 
-    // Filter by searchText 'something'.indexOf('thing') -> true
+    // Filter by query 'something'.indexOf('thing') -> true
     filteredToDos = filteredToDos.filter((todo) => {
       const text = todo.text.toLowerCase()
       return query.length === 0 || text.indexOf(query) > -1

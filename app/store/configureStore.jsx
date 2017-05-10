@@ -1,6 +1,6 @@
 import { combineReducers, createStore, compose } from 'redux'
 import {
-  searchTextReducer,
+  queryReducer,
   showCompletedReducer,
   toDosReducer
 } from 'reducers'
@@ -8,7 +8,7 @@ import {
 
 const configure = (initialState = {}) => {
   const reducer = combineReducers({
-    searchText: searchTextReducer,
+    query: queryReducer,
     showCompleted: showCompletedReducer,
     todos: toDosReducer
   })

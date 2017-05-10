@@ -10,12 +10,14 @@ import configureStore from 'configureStore'
 
 const store = configureStore()
 store.subscribe(() => {
-  console.log('New State', store.getState());
+  console.log('Update Store ', store.getState())
 })
 
-store.dispatch(actions.addToDo('Moo the cows'))
-store.dispatch(actions.setSearchText('cow'))
-store.dispatch(actions.toggleShowCompleted())
+// store.dispatch(actions.addToDo('Moo the cows'))
+// store.dispatch(actions.addToDo('Feed the cows'))
+// store.dispatch(actions.addToDo('Pacify the cows'))
+// store.dispatch(actions.setQuery('cow'))
+// store.dispatch(actions.toggleShowCompleted())
 
 //scss
 import './assets/images/favicon.ico'

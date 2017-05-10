@@ -4,7 +4,7 @@ import ReactTestUtils from 'react-addons-test-utils'
 
 import expect from 'expect'
 
-import ToDoInputForm from 'ToDoInputForm'
+import {ToDoInputForm} from 'ToDoInputForm'
 
 
 describe('ToDoInputForm', () => {
@@ -12,21 +12,26 @@ describe('ToDoInputForm', () => {
     expect(ToDoInputForm).toExist()
   })
 
-  it('Should call onSetNewToDo with valid data', () => {
+  it('Should dispatch ADD_TODO when valid todo text', () => {
     const newEntry = "You've got mail!"
+    const action = {
+      type: 'ADD_TODO',
+      text: newEntry
+    }
+
     const spy = expect.createSpy()
-    let toDoInputForm = ReactTestUtils.renderIntoDocument(<ToDoInputForm onSetNewToDo={spy}/>)
+    let toDoInputForm = ReactTestUtils.renderIntoDocument(<ToDoInputForm dispatch={spy}/>)
     let el = toDoInputForm.node
 
     toDoInputForm.refs.newToDo.value = newEntry
     ReactTestUtils.Simulate.submit(el.children[0])
-    expect(spy).toHaveBeenCalledWith(newEntry)
+    expect(spy).toHaveBeenCalledWith(action)
   })
 
-  it('Should not call onSetNewToDo with inalid data', () => {
+  it('Should not dispatch ADD_TODO with invalid data', () => {
     const newEntry = ""
     const spy = expect.createSpy()
-    let toDoInputForm = ReactTestUtils.renderIntoDocument(<ToDoInputForm onSetNewToDo={spy}/>)
+    let toDoInputForm = ReactTestUtils.renderIntoDocument(<ToDoInputForm dispatch={spy}/>)
     let el = toDoInputForm.node
 
     toDoInputForm.refs.newToDo.value = newEntry

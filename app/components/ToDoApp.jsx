@@ -19,33 +19,10 @@ export class ToDoApp extends Component {
       todos: ToDoAPI.getToDos()
     }
     this.componentDidUpdate = this.componentDidUpdate.bind(this)
-    this.handleAddToDo = this.handleAddToDo.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
   }
 
   componentDidUpdate() {
     ToDoAPI.setToDos(this.state.todos)
-  }
-
-  handleAddToDo(text) {
-    this.setState({
-      todos: [
-        ...this.state.todos, {
-          id: uuid(),
-          text: text,
-          completed: false,
-          createdAt: moment().unix(),
-          completedAt: undefined
-        }
-      ]
-    })
-  }
-
-  handleSearch(showCompleted, query){
-    this.setState({
-      showCompleted: showCompleted,
-      query: query.toLowerCase()
-    })
   }
 
   render() {
@@ -55,9 +32,9 @@ export class ToDoApp extends Component {
       <div className="main-content">
         <Nav/>
         <div className="small-12 medium-6 medium-offset-3">
-          <ToDoSearch onSearch={this.handleSearch}/>
+          <ToDoSearch/>
           <ToDoList/>
-          <ToDoInputForm onSetNewToDo={this.handleAddToDo}/>
+          <ToDoInputForm/>
         </div>
       </div>
     )
