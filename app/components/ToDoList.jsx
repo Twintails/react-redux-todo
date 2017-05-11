@@ -20,7 +20,6 @@ export class ToDoList extends Component {
 
   renderToDos() {
     const {todos, showCompleted, query} = this.props
-    console.log(ToDoAPI.filterToDos(todos, showCompleted, query).length);
     if (todos.length === 0 && ToDoAPI.filterToDos(todos, showCompleted, query).length === 0) {
       return (<p className="container__message">Nothing to do</p>)
     } else if (todos.length > 0 && ToDoAPI.filterToDos(todos, showCompleted, query).length === 0) {

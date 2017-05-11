@@ -7,12 +7,16 @@ import ToDoApp from 'ToDoApp'
 
 import actions from 'actions'
 import configureStore from 'configureStore'
+import ToDoAPI from 'ToDoAPI'
 
 const store = configureStore()
 store.subscribe(() => {
-  console.log('Update Store ', store.getState())
+  let state = store.getState()
+  // console.log('Update Store ', store.getState())
+  ToDoAPI.setToDos(state.todos)
 })
 
+store.dispatch(actions.addToDos(ToDoAPI.getToDos()))
 // store.dispatch(actions.addToDo('Moo the cows'))
 // store.dispatch(actions.addToDo('Feed the cows'))
 // store.dispatch(actions.addToDo('Pacify the cows'))

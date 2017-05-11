@@ -65,5 +65,23 @@ describe('Reducers Test', () => {
       // console.log('\t\t\x1b[36mTOGGLE_TODO swap it back: \x1b[0m',  res);
 
     })
+
+    it('Should add existing ToDos', () => {
+      const todos = [{
+        id: '111',
+        text: 'words',
+        completed: false,
+        completedAt: undefined,
+        createdAt: 33000
+      }]
+      const action = {
+        type: 'ADD_TODOS',
+        todos
+      }
+      const res = reducers.toDosReducer(df([]), df(action))
+
+      expect(res.length).toEqual(1)
+      expect(res[0]).toEqual(todos[0])
+    })
   })
 })

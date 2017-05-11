@@ -16,6 +16,12 @@ module.exports = {
       text
     }
   },
+  addToDos: function (todos) {
+    return {
+      type: 'ADD_TODOS',
+      todos
+    }
+  },
   toggleToDo: function (id) {
     return {
       type: 'TOGGLE_TODO',
