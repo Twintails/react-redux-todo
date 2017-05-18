@@ -47,8 +47,10 @@ Add Aliases to the webpack.config.js file for making more components and sub-com
 Currently uses foundation as the Boilerplate UI for components and prototyping. I strongly suggest designing your own look so your app isn't all foundation-esque, but it gives you a good place to start with semantic naming conventions.
 
 ### CONNECT FIREBASE ###
-for now, create a file in the root of the app called firebaseConf.js
-paste in the following and replace with your connections from your firebase db
+1. for now, create a file in the root of the repo with the other configs called ```firebaseConf.js```
+2. Setup a firebase account at https://firebase.google.com
+3. From your account overview click "Add Firebase to your web app" and copy the config object {}
+4. Paste/replace in the following to replace with your ```key:value``` pairs from your firebase db
 
 ```javascript
 const firebaseConf = {
