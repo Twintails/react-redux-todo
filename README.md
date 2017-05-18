@@ -46,6 +46,24 @@ Add Aliases to the webpack.config.js file for making more components and sub-com
 
 Currently uses foundation as the Boilerplate UI for components and prototyping. I strongly suggest designing your own look so your app isn't all foundation-esque, but it gives you a good place to start with semantic naming conventions.
 
+### CONNECT FIREBASE ###
+for now, create a file in the root of the app called firebaseConf.js
+paste in the following and replace with your connections from your firebase db
+
+```javascript
+const firebaseConf = {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: ""
+}
+export default firebaseConf
+```
+NOTE: I'll probaby change this later to grab a JSON object from Heroku app options or something as a default.  
+
+
 ### Contribution guidelines ###
 
 Be Nice
