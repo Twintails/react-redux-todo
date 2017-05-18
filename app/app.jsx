@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 
 import ToDoApp from 'ToDoApp'
 
-import actions from 'actions'
+import * as actions from 'actions'
 import configureStore from 'configureStore'
 import ToDoAPI from 'ToDoAPI'
 

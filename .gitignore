@@ -47,6 +47,7 @@ tmp/
 temp/
 ._*
 .Trashes
+playground/
 
 .svn
 
@@ -59,6 +60,7 @@ public/**/
 ## Source not needed in repo
 **/bower_components
 **/sourcemaps
+firebaseConf.js
 
 ## OPK
 node_modules

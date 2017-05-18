@@ -34,12 +34,17 @@ describe('Reducers Test', () => {
     it('Should add a new ToDo', () => {
       const action = {
         type: 'ADD_TODO',
-        text: 'Moo the Cows'
+        todo: {
+          id: 'abc123',
+          text: 'Moo the Cows',
+          completed: false,
+          createdAt: 92384275
+        }
       }
       const res = reducers.toDosReducer(df([]), df(action))
 
       expect(res.length).toEqual(1)
-      expect(res[0].text).toEqual(action.text)
+      expect(res[0]).toEqual(action.todo)
       // console.log('\t\t\x1b[36mTEST Result: \x1b[0m', res);
     })
 

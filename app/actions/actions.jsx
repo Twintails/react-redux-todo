@@ -1,31 +1,56 @@
-module.exports = {
-  setQuery: function (query) {
+import firebase, { firebaseRef } from 'app/firebase/'
+import moment from 'moment'
+
+
+  export const setQuery = function (query) {
     return {
       type: 'SET_QUERY_TEXT',
       query
     }
-  },
-  toggleShowCompleted: function () {
+  }
+
+  export const toggleShowCompleted = function () {
     return {
       type: 'TOGGLE_SHOW_COMPLETED'
     }
-  },
-  addToDo: function (text) {
+  }
+
+  export const addToDo = function (todo) {
     return {
       type: 'ADD_TODO',
-      text
+      todo
     }
-  },
-  addToDos: function (todos) {
+  }
+
+  export const startAddToDo = function(text) {
+    return (dispatch, getState) => {
+      const todo = {
+        text,
+        completed: false,
+        createdAt: moment().unix(),
+        completedAt: null,
+      }
+      const toDoRef = firebaseRef.child('todos').push(todo)
+      return toDoRef.then(function StartAddToDoDispatch() {
+        dispatch(addToDo({
+            ...todo,
+            id: toDoRef.key
+          }
+        ))
+      })
+    }
+  }
+
+  export const addToDos = function (todos) {
     return {
       type: 'ADD_TODOS',
       todos
     }
-  },
-  toggleToDo: function (id) {
+  }
+
+  export const toggleToDo = function (id) {
     return {
       type: 'TOGGLE_TODO',
       id
     }
   }
-}

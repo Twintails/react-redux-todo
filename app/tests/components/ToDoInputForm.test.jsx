@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import ReactTestUtils from 'react-addons-test-utils'
 
 import expect from 'expect'
-
-import {ToDoInputForm} from 'ToDoInputForm'
+import { startAddToDo } from 'actions'
+import { ToDoInputForm } from 'ToDoInputForm'
 
 
 describe('ToDoInputForm', () => {
@@ -14,10 +14,7 @@ describe('ToDoInputForm', () => {
 
   it('Should dispatch ADD_TODO when valid todo text', () => {
     const newEntry = "You've got mail!"
-    const action = {
-      type: 'ADD_TODO',
-      text: newEntry
-    }
+    const action = startAddToDo(newEntry)
 
     const spy = expect.createSpy()
     let toDoInputForm = ReactTestUtils.renderIntoDocument(<ToDoInputForm dispatch={spy}/>)

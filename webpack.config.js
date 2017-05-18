@@ -48,14 +48,16 @@ module.exports = {
     ],
     root: __dirname,
     alias: {
-      configureStore: 'app/store/configureStore.jsx'
+      app: 'app',
+      configureStore: 'app/store/configureStore.jsx',
+      firebaseConf: 'firebaseConf.js'
     },
     extensions: ['','.js','.jsx']
   },
   devtool: "source-map",
   module: {
     loaders: [
-      { test: /\.jsx?$/, loader: 'babel-loader', query: { presets: ['react', 'es2015'] }, exclude: /(node_modules|bower_components)/ },
+      { test: /\.jsx?$/, loader: 'babel-loader', query: { presets: ['react', 'es2015', 'stage-2'] }, exclude: /(node_modules|bower_components)/ },
       { test: /\.scss$/i, loaders: ['style', extractSCSS.extract(['css!postcss!sass'])] },
       { test: __dirname + '/app/index.html', loader:  extractHTML.extract(["html?" + JSON.stringify({ attrs: ["img:src"] })])  },
       // { test: /\.scss?$/, loaders: ['style', 'css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'] },

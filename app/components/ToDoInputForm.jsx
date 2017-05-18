@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import actions from 'actions'
+import * as actions from 'actions'
 
 export class ToDoInputForm extends Component{
     constructor(props) {
@@ -16,7 +16,7 @@ export class ToDoInputForm extends Component{
 
       if ( typeof strNewToDo === 'string' && strNewToDo.length > 0 ) {
         this.refs.newToDo.value = ''
-        dispatch(actions.addToDo(strNewToDo))
+        dispatch(actions.startAddToDo(strNewToDo))
       } else {
         this.refs.newToDo.focus()
       }
