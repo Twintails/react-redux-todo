@@ -25,14 +25,13 @@ module.exports = {
           ...state,
           action.todo
         ]
-      case 'TOGGLE_TODO':
+      case 'UPDATE_TODO':
         return state.map((todo) => {
           if (todo.id === action.id) {
-            const nextCompleted = !todo.completed
-            return Object.assign({}, todo, {
-              completed: nextCompleted,
-              completedAt: nextCompleted ? moment().unix() : undefined
-            })
+            return {
+              ...todo,
+              ...action.updates
+            }
           } else {
             return todo
           }

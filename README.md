@@ -27,7 +27,7 @@ nodemon
 Or, run a Dev environment with webpack-dev-server instead of nodemon
 ```bash
 
-npm run development
+npm run develop
 ```
 
 for compiling a distribution folder which you can run from any web server.
@@ -68,7 +68,7 @@ NOTE: I'll probaby change this later to grab a JSON object from Heroku app optio
 
 ### We've got tests, yep ###
 
-After followint the setup and firebase steps above. The tests should pass with
+After following the setup and firebase steps above. The tests should pass with
 ```bash
 
 npm test

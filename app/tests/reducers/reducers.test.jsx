@@ -49,24 +49,30 @@ describe('Reducers Test', () => {
     })
 
     it('Should invert the state of Todo', () => {
-      let todos = [{
+      const todos = [{
         id: '123',
         text: 'Moo the Cows',
         completed: true,
         createdAt: 123,
         completedAt: 125
       }]
+      const updates = {
+        completed: false,
+        completedAt: null
+      }
       const action = {
-          type: 'TOGGLE_TODO',
-          id: '123',
+          type: 'UPDATE_TODO',
+          id: todos[0].id,
+          updates
       }
       let res = reducers.toDosReducer(df(todos), df(action))
-      expect(res[0].completed).toEqual(false)
-      expect(res[0].completedAt).toEqual(undefined)
+      expect(res[0].completed).toEqual(updates.completed)
+      expect(res[0].completedAt).toEqual(updates.completedAt)
+      expect(res[0].text).toEqual(todos[0].text)
       // console.log('\t\t\x1b[36mTOGGLE_TODO Result: \x1b[0m', res);
-      res = reducers.toDosReducer(df(res), df(action))
-      expect(res[0].completed).toEqual(true)
-      expect(typeof(res[0].completedAt)).toBe('number')
+      // res = reducers.toDosReducer(df(res), df(action))
+      // expect(res[0].completed).toEqual(true)
+      // expect(typeof(res[0].completedAt)).toBe('number')
       // console.log('\t\t\x1b[36mTOGGLE_TODO swap it back: \x1b[0m',  res);
 
     })
