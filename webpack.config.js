@@ -9,6 +9,9 @@ const webpack = require('webpack')
 
 const PORT = process.env.PORT || 3001;
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+
+
 module.exports = {
   context: path.join(__dirname, 'public'),
   entry: [
@@ -54,7 +57,7 @@ module.exports = {
     },
     extensions: ['','.js','.jsx']
   },
-  devtool: "source-map",
+  devtool: process.env.NODE_ENV === "production" ? undefined : "source-map",
   module: {
     loaders: [
       { test: /\.jsx?$/, loader: 'babel-loader', query: { presets: ['react', 'es2015', 'stage-2'] }, exclude: /(node_modules|bower_components)/ },
@@ -82,7 +85,12 @@ module.exports = {
       'jQuery':'jquery'
     }),
     extractHTML,
-    extractSCSS
+    extractSCSS,
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    })
   ],
   imagemin: {
     gifsicle: { interlaced: false },

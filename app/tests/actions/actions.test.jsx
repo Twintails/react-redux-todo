@@ -95,13 +95,19 @@ describe('Actions', () => {
     var testToDoRef
 
     beforeEach((done) => {
-      testToDoRef = firebaseRef.child('todos').push()
+      let testToDosRef = firebaseRef.child('todos')
+      testToDosRef.remove().then((done) => {
+        testToDoRef = firebaseRef.child('todos').push()
 
-      testToDoRef.set({
-        text: 'Walk the armadillo',
-        completed: false,
-        createdAt: 5256452
-      }).then(() => done())
+        return testToDoRef.set({
+          text: 'Walk the armadillo',
+          completed: false,
+          createdAt: 5256452
+        })
+
+      })
+      .then(() => done())
+      .catch(done)
     })
 
     afterEach((done) => {
@@ -123,6 +129,21 @@ describe('Actions', () => {
           completed: true
         })
         expect(mockActions[0].updates.completedAt).toExist()
+
+        done()
+      }).catch(done)
+    })
+
+    it('Should populate todos and dispatch ADD_TODOS', (done) => {
+      const mockStore = createMockStore({})
+      const mockAction = actions.startAddToDos()
+
+      mockStore.dispatch(mockAction).then(() => {
+        const mockActions = mockStore.getActions()
+
+        expect(mockActions[0].type).toEqual('ADD_TODOS')
+        expect(mockActions[0].todos.length).toEqual(1)
+        expect(mockActions[0].todos[0].text).toEqual('Walk the armadillo')
 
         done()
       }).catch(done)
