@@ -48,6 +48,27 @@ import moment from 'moment'
     }
   }
 
+  export const startAddToDos = function() {
+    return (dispatch, getState) => {
+      let todos = []
+      const toDosRef = firebaseRef.child('todos').once('value').then((snapshot) => {
+        let storedTodos = snapshot.val() || {}
+        Object.keys(storedTodos).forEach( function buildToDosArray(toDoID) {
+          todos.push({
+            id: toDoID,
+            ...storedTodos[toDoID]
+          })
+        })
+      }, (e) => {
+        console.log('Unable to fetch data');
+      })
+      return toDosRef.then(function StartAddToDosDispatch() {
+        dispatch(addToDos(todos))
+      })
+    }
+  }
+
+
   export const updateToDo = function (id, updates) {
     return {
       type: 'UPDATE_TODO',

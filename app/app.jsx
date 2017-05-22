@@ -10,18 +10,8 @@ import configureStore from 'configureStore'
 import ToDoAPI from 'ToDoAPI'
 
 const store = configureStore()
-store.subscribe(() => {
-  let state = store.getState()
-  // console.log('Update Store ', store.getState())
-  ToDoAPI.setToDos(state.todos)
-})
+store.dispatch(actions.startAddToDos())
 
-store.dispatch(actions.addToDos(ToDoAPI.getToDos()))
-// store.dispatch(actions.addToDo('Moo the cows'))
-// store.dispatch(actions.addToDo('Feed the cows'))
-// store.dispatch(actions.addToDo('Pacify the cows'))
-// store.dispatch(actions.setQuery('cow'))
-// store.dispatch(actions.toggleShowCompleted())
 
 //scss
 import './assets/images/favicon.ico'
