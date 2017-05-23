@@ -1,7 +1,14 @@
 import firebase from 'firebase'
-import firebaseConf from 'firebaseConf'
+
 try {
-  firebase.initializeApp(firebaseConf)
+  firebase.initializeApp({
+    apiKey:            process.env.API_KEY,
+    authDomain:        process.env.AUTH_DOMAIN,
+    databaseURL:       process.env.DATABASE_URL,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    projectId:         process.env.PROJECT_ID,
+    storageBucket:     process.env.STORAGE_BUCKET
+  })
 } catch (e) {
 
 }

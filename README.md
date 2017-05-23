@@ -46,24 +46,16 @@ Add Aliases to the webpack.config.js file for making more components and sub-com
 
 Currently uses foundation as the Boilerplate UI for components and prototyping. I strongly suggest designing your own look so your app isn't all foundation-esque, but it gives you a good place to start with semantic naming conventions.
 
-### CONNECT FIREBASE ###
-1. for now, create a file in the root of the repo with the other configs called ```firebaseConf.js```
-2. Setup a firebase account at https://firebase.google.com
-3. From your account overview click "Add Firebase to your web app" and copy the config object {}
-4. Paste/replace in the following to replace with your ```key:value``` pairs from your firebase db
-
-```javascript
-const firebaseConf = {
-    apiKey: "",
-    authDomain: "",
-    databaseURL: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: ""
-}
-export default firebaseConf
-```
-NOTE: I'll probaby change this later to grab a JSON object from Heroku app options or something as a default.  
+### CONNECT FIREBASE with ENVIRONMENT VARS ###
+1. reanme the config/development.env-example to config/development.env
+1. reanme the config/test.env-example to config/test.env
+1. Setup a firebase account at https://firebase.google.com
+1. Create a firebase project for development data and a second for test data
+1. From each project overview click "Add Firebase to your web app" to get the config object {}
+1. Copy the values for each to the respective config/{}.env
+1. in each firebase project Database under rules tab set ".read" and ".write" to true *(FOR NOW UNTIL AUTH IS ADDED)*
+1. If you are using heroku setup the same Config Variables as shown in the examples API_KEY, AUTH_DOMAIN, ...etc
+1. In your NON-Test Project on Firebase under Authentication, SIGN-IN Method add your heroku domain to the OAuth redirect domains table
 
 
 ### We've got tests, yep ###

@@ -54,13 +54,15 @@ playground/
 *.scssc
 *.map
 
+**/*.env
+
 ## Compiled by Webpack tasks
 public/**/
 
 ## Source not needed in repo
 **/bower_components
 **/sourcemaps
-firebaseConf.js
+
 
 ## OPK
 node_modules
