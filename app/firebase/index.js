@@ -16,6 +16,6 @@ try {
 
 // Initialize Firebase
 
-
+export const twitterProvider = new firebase.auth.TwitterAuthProvider()
 export const firebaseRef = firebase.database().ref()
 export default firebase

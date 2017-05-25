@@ -1,0 +1,52 @@
+.card .switch{
+  margin: .5rem;
+}
+.container__message {
+  margin: 2em auto;
+  text-align: center;
+  color: #ccc;
+}
+.switch {
+  label:not([for='show-completed']) {
+    .label{
+      margin-left: 3.6em;
+      color: black;
+      font-weight: normal;
+      background-color: transparent;
+      width: 560%;
+    }
+    .switch-active {
+      left: 11%;
+    }
+  }
+}
+.switch label[for='show-completed'].switch-paddle {
+  width: 100%;
+  background-color: #1779ba;
+  .switch-active {
+    right: 6px;
+    left: auto;
+  }
+  .switch-inactive {
+     right: 25px;
+     left: auto;
+  }
+}
+.switch label[for='show-completed'].switch-paddle::after {
+  right: 4px;
+  left: auto;
+}
+.switch label[for='show-completed'].switch-paddle::after {
+  right: 4px;
+  left: auto;
+}
+.switch input:checked ~ label[for='show-completed'].switch-paddle::after {
+  right: 1.5rem;
+  left: auto;
+}
+
+.switch-paddle .label {
+  height: inherit;
+  // margin-left: 3.778em;
+  line-height: 1.1;
+}

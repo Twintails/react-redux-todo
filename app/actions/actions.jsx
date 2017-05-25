@@ -1,4 +1,4 @@
-import firebase, { firebaseRef } from 'app/firebase/'
+import firebase, { firebaseRef, twitterProvider } from 'app/firebase/'
 import moment from 'moment'
 
 
@@ -89,4 +89,22 @@ import moment from 'moment'
         dispatch(updateToDo(id, updates))
       })
     }
+  }
+
+  export const startLogin = function () {
+    return ((dispatch, getState) => {
+      return firebase.auth().signInWithPopup(twitterProvider).then( (result) => {
+        console.log("Boom baby, You're In!", result);
+      }, (error) => {
+        console.log("No Dice; auth failure", error);
+      })
+    })
+  }
+
+  export const startLogout = function () {
+    return ((dispatch, getState) => {
+      return firebase.auth().signOut().then(() => {
+        console.log("You're Out!");
+      })
+    })
   }

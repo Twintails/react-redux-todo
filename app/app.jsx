@@ -4,6 +4,9 @@ import { Route, Router, IndexRoute, hashHistory, browserHistory } from 'react-ro
 import { Provider } from 'react-redux'
 
 import ToDoApp from 'ToDoApp'
+import Login from 'Login'
+import About from 'About'
+import Welcome from 'Welcome'
 
 import * as actions from 'actions'
 import configureStore from 'configureStore'
@@ -20,9 +23,11 @@ import './assets/Sass/style.scss'
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={ToDoApp}>
-        {/* <IndexRoute component={Timer}/> */}
-        {/* <Route path="countdown" component={Countdown}/> */}
+      <Route path="/">
+        <IndexRoute name="Welcome" component={Welcome}/>
+        <Route name="About" path="About" component={About}/>
+        <Route name="Login" path="ToDo" component={Login}/>
+        <Route name="App" path="/ToDo/it" component={ToDoApp}/>
       </Route>
     </Router>
   </Provider>,
