@@ -29,7 +29,7 @@ export class Login extends Component {
             <input type="email" placeholder="monkier@domain.tld"/></label> */}
             <h3>Login</h3>
             <p>Login with whatever below</p>
-            <button className="button" onClick={this.onLogin}>Login with whatever</button>
+            <button className="button" onClick={this.onLogin}>Login with Twitter</button>
           </div>
         </div>
       </div>

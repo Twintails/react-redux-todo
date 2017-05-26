@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 import { startLogout } from 'actions'
 
 import NavLink from 'NavLinks'
+import firebase from 'app/firebase/'
 
 export class Nav extends Component {
   constructor(props) {
     super(props)
     this.onLogout = this.onLogout.bind(this)
+    this.displayLogout = this.displayLogout.bind(this)
   }
 
   onLogout(e) {
@@ -19,6 +21,13 @@ export class Nav extends Component {
     dispatch(startLogout())
   }
 
+  displayLogout() {
+    if (firebase.auth().currentUser) {
+      return (<li><a href="#" onClick={this.onLogout}>Logout</a></li>)
+    }
+    return
+  }
+
   render() {
     return (
       <div className="top-bar">
@@ -27,13 +36,13 @@ export class Nav extends Component {
             <li className="menu-text"><IndexLink to="/" >Home</IndexLink></li>
             <li><NavLink to="/about" >About</NavLink></li>
             <li><NavLink to="/ToDo" >ToDo</NavLink></li>
-            <li><NavLink to="/ToDo/it" >App</NavLink></li>
+            {/* <li><NavLink to="/ToDo/it" >App</NavLink></li> */}
           </ul>
         </div>
         <div className="top-bar-right">
           <ul className="menu">
             <li className="menu-text"><span>Created By <a href="//twintails.com" target="_blank">Twintails</a></span></li>
-            <li><a href="#" className="button" onClick={this.onLogout}>Logout</a></li>
+            {this.displayLogout()}
           </ul>
         </div>
       </div>
