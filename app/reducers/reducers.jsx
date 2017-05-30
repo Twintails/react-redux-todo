@@ -2,6 +2,18 @@ import uuid from 'node-uuid'
 import moment from 'moment'
 
 module.exports = {
+  authReducer: function(state = {}, action) {
+    switch (action.type) {
+      case 'LOGIN':
+        return {
+          uid: action.uid
+        }
+      case 'LOGOUT':
+        return {}
+      default:
+        return state
+    }
+  },
   queryReducer: function(state = '', action) {
     switch (action.type) {
       case 'SET_QUERY_TEXT':

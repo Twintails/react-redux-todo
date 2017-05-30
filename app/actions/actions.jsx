@@ -1,7 +1,6 @@
 import firebase, { firebaseRef, twitterProvider } from 'app/firebase/'
 import moment from 'moment'
 
-
   export const setQuery = function (query) {
     return {
       type: 'SET_QUERY_TEXT',
@@ -91,14 +90,27 @@ import moment from 'moment'
     }
   }
 
+  export const login = function (uid) {
+    return {
+      type: 'LOGIN',
+      uid
+    }
+  }
+
   export const startLogin = function () {
     return ((dispatch, getState) => {
       return firebase.auth().signInWithPopup(twitterProvider).then( (result) => {
-        console.log("Boom baby, You're In!", result);
+        console.log("Boom baby, You're In!");
       }, (error) => {
         console.log("No Dice; auth failure", error);
       })
     })
+  }
+
+  export const logout = function () {
+    return {
+      type: 'LOGOUT'
+    }
   }
 
   export const startLogout = function () {

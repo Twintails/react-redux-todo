@@ -8,14 +8,6 @@ import About from 'About'
 import Welcome from 'Welcome'
 import firebase from 'app/firebase/'
 
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    browserHistory.push('/ToDo/it')
-  } else {
-    browserHistory.push('/ToDo')
-  }
-})
-
 const requireLogin = (nextState, replace, next) => {
   if (!firebase.auth().currentUser) {
     replace('/ToDo')
@@ -29,7 +21,6 @@ const redirectIfLoggedIn = (nextState, replace, next) => {
   }
   next()
 }
-
 
 export default (
   <Router history={browserHistory}>

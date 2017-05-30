@@ -1,9 +1,15 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const extractSCSS = new ExtractTextPlugin('css/style.css')
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+const extractSCSS = new ExtractTextPlugin('../css/style.css')
 const extractHTML = new ExtractTextPlugin('index.html')
+
+
+
 
 const webpack = require('webpack')
 const envFile = require('node-env-file')
@@ -23,8 +29,7 @@ module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
     'script!foundation-sites/dist/js/foundation.min.js',
-    __dirname + '/app/app.jsx',
-    __dirname + '/app/index.html'
+    __dirname + '/app/app.jsx'
   ],
   devServer: {
     'content-base': __dirname + 'public',
@@ -35,7 +40,7 @@ module.exports = {
   },
   output: {
     path: __dirname + "/public",
-    filename: 'js/bundle.js'
+    filename: '../js/bundle.js'
   },
   resolve: {
     modules: [
@@ -45,7 +50,7 @@ module.exports = {
       './app/api',
       './app/actions',
       './app/reducers',
-      '.app/store'
+      './app/store'
     ],
     modulesDirectories: [
       "node_modules",
@@ -53,7 +58,7 @@ module.exports = {
       './app/api',
       './app/actions',
       './app/reducers',
-      '.app/store'
+      './app/store'
     ],
     root: __dirname,
     alias: {
@@ -65,11 +70,12 @@ module.exports = {
   devtool: process.env.NODE_ENV === "production" ? undefined : "source-map",
   module: {
     loaders: [
+      { test: /\.html$/, loader: 'html-loader' },
       { test: /\.jsx?$/, loader: 'babel-loader', query: { presets: ['react', 'es2015', 'stage-2'] }, exclude: /(node_modules|bower_components)/ },
       { test: /\.scss$/i, loaders: ['style', extractSCSS.extract(['css!postcss!sass'])] },
-      { test: __dirname + '/app/index.html', loader:  extractHTML.extract(["html?" + JSON.stringify({ attrs: ["img:src"] })])  },
+      { test: __dirname + '/app/index.html', loader:  extractHTML.extract(["html?" + JSON.stringify({ attrs: [ "img:src"] })])  },
       // { test: /\.scss?$/, loaders: ['style', 'css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'] },
-      { test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/i, loaders: [ 'file?name=[name].[ext]' ] },
+      { test: __dirname + '/assets/images' + (/\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/i), loaders: [ 'file?name=[name].[ext]' ] },
       // { test: /\.css$/, loaders: [ 'file', 'extract', 'css' ] },
       // { test: __dirname + '/app/index.html', loaders: [ "file?name=[name].[ext]", "extract", "html?" + JSON.stringify({ attrs: ["img:src", "link:href"] }) ] },
     ]
@@ -91,6 +97,10 @@ module.exports = {
     }),
     extractHTML,
     extractSCSS,
+    new HtmlWebpackPlugin({
+      title: 'React Redux ToDo App'
+    }),
+    new FaviconsWebpackPlugin(__dirname + '/app/assets/images/TheWolverineClaws.png'),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV:            JSON.stringify(process.env.NODE_ENV),
