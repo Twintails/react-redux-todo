@@ -12,10 +12,6 @@ import router from 'app/router/'
 // import './assets/images/favicon.ico'
 import './assets/Sass/style.scss'
 
-const app = document.createElement('div')
-app.id = 'app'
-document.body.appendChild(app)
-
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(actions.login(user.uid))

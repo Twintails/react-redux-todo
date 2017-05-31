@@ -10,12 +10,17 @@ export class ToDoList extends Component {
     super(props)
     this.renderToDos = this.renderToDos.bind(this)
     this.renderDate = this.renderDate.bind(this)
+    this.dateLabelClass = this.dateLabelClass.bind(this)
   }
 
   renderDate(todo) {
     return !todo.completed ?
       'Created ' + moment.unix(todo.createdAt).format('YYYY.MM.DD @ HH:mm') :
       'Completed ' + moment.unix(todo.completedAt).format('YYYY.MM.DD @ HH:mm')
+  }
+
+  dateLabelClass(completed) {
+    return completed ? 'label completed' : 'label incomplete'
   }
 
   renderToDos() {
@@ -29,7 +34,7 @@ export class ToDoList extends Component {
       return (
         <div className="card" key={(todo.id + "-card")} {...todo.completed} >
           <ToDo key={todo.id} {...todo}/>
-          <p className="label">{this.renderDate(todo)}</p>
+          <p className={this.dateLabelClass(todo.completed)}>{this.renderDate(todo)}</p>
         </div>
       )
     })

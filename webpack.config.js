@@ -6,7 +6,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const extractSCSS = new ExtractTextPlugin('../css/style.css')
-const extractHTML = new ExtractTextPlugin('index.html')
+// const extractHTML = new ExtractTextPlugin('index.html')
 
 
 
@@ -73,7 +73,7 @@ module.exports = {
       { test: /\.html$/, loader: 'html-loader' },
       { test: /\.jsx?$/, loader: 'babel-loader', query: { presets: ['react', 'es2015', 'stage-2'] }, exclude: /(node_modules|bower_components)/ },
       { test: /\.scss$/i, loaders: ['style', extractSCSS.extract(['css!postcss!sass'])] },
-      { test: __dirname + '/app/index.html', loader:  extractHTML.extract(["html?" + JSON.stringify({ attrs: [ "img:src"] })])  },
+      // { test: __dirname + '/app/index.html', loader:  extractHTML.extract(["html?" + JSON.stringify({ attrs: [ "img:src"] })])  },
       // { test: /\.scss?$/, loaders: ['style', 'css?sourceMap', 'postcss?sourceMap', 'sass?sourceMap'] },
       { test: __dirname + '/assets/images' + (/\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/i), loaders: [ 'file?name=[name].[ext]' ] },
       // { test: /\.css$/, loaders: [ 'file', 'extract', 'css' ] },
@@ -95,10 +95,10 @@ module.exports = {
       '$':'jquery',
       'jQuery':'jquery'
     }),
-    extractHTML,
     extractSCSS,
     new HtmlWebpackPlugin({
-      title: 'React Redux ToDo App'
+      title: 'React Redux ToDo App',
+      template: '../app/index.html'
     }),
     new FaviconsWebpackPlugin(__dirname + '/app/assets/images/TheWolverineClaws.png'),
     new webpack.DefinePlugin({
@@ -117,10 +117,10 @@ module.exports = {
       '$':'jquery',
       'jQuery':'jquery'
     }),
-    extractHTML,
     extractSCSS,
     new HtmlWebpackPlugin({
-      title: 'React Redux ToDo App'
+      title: 'React Redux ToDo App',
+      template: '../app/index.html'
     }),
     new FaviconsWebpackPlugin(__dirname + '/app/assets/images/TheWolverineClaws.png'),
     new webpack.optimize.UglifyJsPlugin({

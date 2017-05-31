@@ -1,6 +1,9 @@
 .card .switch{
   margin: .5rem;
 }
+.card .switch + .completed {
+  background: #4caf50;
+}
 .container__message {
   margin: 2em auto;
   text-align: center;
