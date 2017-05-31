@@ -5,7 +5,7 @@ const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plug
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const extractSCSS = new ExtractTextPlugin('../css/style.css')
+const extractSCSS = new ExtractTextPlugin('css/style.css')
 // const extractHTML = new ExtractTextPlugin('index.html')
 
 
@@ -40,7 +40,7 @@ module.exports = {
   },
   output: {
     path: __dirname + "/public",
-    filename: '../js/bundle.js'
+    filename: 'js/bundle.js'
   },
   resolve: {
     modules: [
@@ -70,7 +70,7 @@ module.exports = {
   devtool: process.env.NODE_ENV === "production" ? undefined : "source-map",
   module: {
     loaders: [
-      { test: /\.html$/, loader: 'html-loader' },
+      { test: __dirname + '/app/*' + /\.html$/, loader: 'html-loader' },
       { test: /\.jsx?$/, loader: 'babel-loader', query: { presets: ['react', 'es2015', 'stage-2'] }, exclude: /(node_modules|bower_components)/ },
       { test: /\.scss$/i, loaders: ['style', extractSCSS.extract(['css!postcss!sass'])] },
       // { test: __dirname + '/app/index.html', loader:  extractHTML.extract(["html?" + JSON.stringify({ attrs: [ "img:src"] })])  },

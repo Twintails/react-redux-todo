@@ -16,7 +16,7 @@ const requireLogin = (nextState, replace, next) => {
 }
 
 const redirectIfLoggedIn = (nextState, replace, next) => {
-  if (firebase.auth().currentUser) {
+  if (firebase.auth().currentUser && window.location.pathname.startsWith('/ToDo')) {
     replace('/ToDo/it')
   }
   next()
