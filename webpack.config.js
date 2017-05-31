@@ -119,6 +119,10 @@ module.exports = {
     }),
     extractHTML,
     extractSCSS,
+    new HtmlWebpackPlugin({
+      title: 'React Redux ToDo App'
+    }),
+    new FaviconsWebpackPlugin(__dirname + '/app/assets/images/TheWolverineClaws.png'),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false
