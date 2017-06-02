@@ -10,14 +10,14 @@ import firebase from 'app/firebase/'
 
 const requireLogin = (nextState, replace, next) => {
   if (!firebase.auth().currentUser) {
-    replace('/ToDo')
+    replace('/Login')
   }
   next()
 }
 
 const redirectIfLoggedIn = (nextState, replace, next) => {
-  if (firebase.auth().currentUser && window.location.pathname.startsWith('/ToDo')) {
-    replace('/ToDo/it')
+  if (firebase.auth().currentUser && window.location.pathname.startsWith('/Login')) {
+    replace('/ToDo')
   }
   next()
 }
@@ -27,8 +27,8 @@ export default (
     <Route path="/">
       <IndexRoute name="Welcome" component={Welcome}/>
       <Route name="About" path="About" component={About}/>
-      <Route name="Login" path="ToDo" component={Login} onEnter={redirectIfLoggedIn}/>
-      <Route name="App" path="/ToDo/it" component={ToDoApp} onEnter={requireLogin}/>
+      <Route name="Login" path="Login" component={Login} onEnter={redirectIfLoggedIn}/>
+      <Route name="App" path="ToDo" component={ToDoApp} onEnter={requireLogin}/>
     </Route>
   </Router>
 )

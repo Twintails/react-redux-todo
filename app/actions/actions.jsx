@@ -29,7 +29,8 @@ import moment from 'moment'
         createdAt: moment().unix(),
         completedAt: null,
       }
-      const toDoRef = firebaseRef.child('todos').push(todo)
+      const uid = getState().auth.uid
+      const toDoRef = firebaseRef.child(`users/${uid}/todos`).push(todo)
       return toDoRef.then(function StartAddToDoDispatch() {
         dispatch(addToDo({
             ...todo,
@@ -50,7 +51,8 @@ import moment from 'moment'
   export const startAddToDos = function() {
     return (dispatch, getState) => {
       let todos = []
-      const toDosRef = firebaseRef.child('todos').once('value').then((snapshot) => {
+      const uid = getState().auth.uid
+      const toDosRef = firebaseRef.child(`users/${uid}/todos`).once('value').then((snapshot) => {
         let storedTodos = snapshot.val() || {}
         Object.keys(storedTodos).forEach( function buildToDosArray(toDoID) {
           todos.push({
@@ -78,7 +80,8 @@ import moment from 'moment'
 
   export const startToggleToDo = function (id, completed) {
     return (dispatch, getState) => {
-      const todoRef = firebaseRef.child(`todos/${id}`)
+      const uid = getState().auth.uid
+      const todoRef = firebaseRef.child(`users/${uid}/todos/${id}`)
       const updates = {
         completed,
         completedAt: completed ? moment().unix() : null

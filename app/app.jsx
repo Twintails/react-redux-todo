@@ -12,18 +12,22 @@ import router from 'app/router/'
 // import './assets/images/favicon.ico'
 import './assets/Sass/style.scss'
 
+const store = configureStore()
+
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(actions.login(user.uid))
-    browserHistory.push('/ToDo/it')
+    store.dispatch(actions.startAddToDos())
+    if (window.location.pathname.startsWith('/Login')) {
+      browserHistory.push('/ToDo')
+    }
   } else {
     store.dispatch(actions.logout())
-    browserHistory.push('/ToDo')
+    if (window.location.pathname.startsWith('/ToDo')) {
+      browserHistory.push('/Login')
+    }
   }
 })
-
-const store = configureStore()
-store.dispatch(actions.startAddToDos())
 
 ReactDOM.render(
   <Provider store={store}>
