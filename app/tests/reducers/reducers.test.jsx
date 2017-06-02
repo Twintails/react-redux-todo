@@ -95,6 +95,23 @@ describe('Reducers Test', () => {
       expect(res[0]).toEqual(todos[0])
     })
 
+    it('Should remove todos from store on Logout', () => {
+      const todos = [{
+        id: '111',
+        text: 'words',
+        completed: false,
+        completedAt: undefined,
+        createdAt: 33000
+      }]
+      const action = {
+        type: 'LOGOUT'
+      }
+
+      const res = reducers.toDosReducer(df(todos), df(action))
+
+      expect(res.length).toEqual(0)
+    })
+
     describe('authReducer', () => {
       it('should store uid on LOGIN', () => {
         const action = {

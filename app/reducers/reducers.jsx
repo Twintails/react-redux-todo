@@ -53,6 +53,8 @@ module.exports = {
           ...state,
           ...action.todos
         ]
+      case 'LOGOUT':
+        return []
       default:
         return state
     }
