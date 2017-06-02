@@ -1,11 +1,11 @@
 {
-  "name": "react-boilerplate",
-  "version": "0.4.0",
-  "description": "Webpack 1 + React 15.4 Boilerplate app; Now with testing!",
+  "name": "react-redux-todos",
+  "version": "1.0.0",
+  "description": "Webpack + React + Redux app for tracking todos!",
   "main": "server.js",
   "scripts": {
     "heroku-postbuild": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
-    "start": "npm run build && node server.js",
+    "start": "NODE_ENV=production npm run build && node server.js",
     "develop": "NODE_ENV=development webpack-dev-server --hot --inline --history-api-fallback",
     "dev": "webpack-dev-server --hot --inline --history-api-fallback",
     "test": "NODE_ENV=development NODE_ENV=test karma start",
